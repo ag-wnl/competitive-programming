@@ -14,7 +14,8 @@ void solve(){
 
     //as we need to find median, and n*n numbers in table in total, so median ofc gonna have
     // n*n+1/2 no.s including it and behind it. So find smallest such number which return true for this
-
+    //ith row will have mid/i elements smaller or equal to mid (As ith row has n multiples of i in the table)
+    
     ll l = 1, r = n*n;
     ll tar = (n*n + 1) / 2;
 
