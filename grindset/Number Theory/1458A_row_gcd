@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+using ll = int64_t;    
+#define all(x) (x).begin(), (x).end()
+const int MAXN = 1e5+5;
+
+// problem link : https://codeforces.com/problemset/problem/1458/A
+// using property gcd(a,b) = gcd(a, b-a) where b > a. 
+// This can be extended to gcd(a,b,c) = gcd(a, b-a, c-a) so on
+
+void solve(){
+    ll n, m;
+    cin >> n >> m;
+
+    vector<ll> a(n), b(m);
+    ll g = 0;
+
+    for(ll i=0; i<n; i++) {
+        cin >> a[i];
+
+        if(i > 0) g = __gcd(g, abs(a[i] - a[0]));
+    }
+    
+    for(int i=0; i<m; i++) {
+        cin >> b[i];
+    }
+
+    for(int i=0; i<m; i++) {
+        cout << __gcd(a[0] + b[i], g) << " ";
+    }
+    cout << "\n";
+}
+ 
+int main(){
+    ios_base::sync_with_stdio(false), cin.tie(nullptr);
+    int T=1;
+    // cin >> T;
+    while(T--) solve();
+}
