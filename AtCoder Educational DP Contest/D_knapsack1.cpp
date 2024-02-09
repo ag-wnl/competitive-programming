@@ -28,5 +28,8 @@ int main(){
         }
     } 
 
-    cout << dp[n][W] << "\n";
+
+    ll ans = 0;
+    for(ll i=0; i<=W; i++) ans = max(ans, dp[n][i]);
+    cout << ans << "\n";
 }
