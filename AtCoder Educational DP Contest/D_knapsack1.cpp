@@ -13,15 +13,17 @@ int main(){
     ll n,W;
     cin >> n >> W;
 
-    vector<ll> w(n+1), v(n+1);
-    for(int i=1; i<=n; i++) cin >> w[i] >> v[i];
+    vector<ll> w(n), v(n);
+    for(int i=0; i<n; i++) cin >> w[i] >> v[i];
 
     vector<vector<ll>> dp(n+1, vector<ll>(W+1));
 
-    for(ll i=0; i<=W; i++) dp[0][i] = 0;
-    for(ll i=0; i<=n; i++) dp[i][0] = 0;
+    dp[0][0] = 0;
+    dp[0][w[0]] = v[0];
 
-    for(ll i=1; i<=n; i++) {
+    for(ll i=1; i<n; i++) {
+        dp[i][0] = 0;
+    
         for(ll j = 1; j<=W; j++) {
             dp[i][j] = dp[i-1][j];
             if(j - w[i] >= 0) dp[i][j] = max(dp[i][j], dp[i-1][j-w[i]] + v[i]);
@@ -30,6 +32,6 @@ int main(){
 
 
     ll ans = 0;
-    for(ll i=0; i<=W; i++) ans = max(ans, dp[n][i]);
+    for(ll i=0; i<=W; i++) ans = max(ans, dp[n-1][i]);
     cout << ans << "\n";
 }
